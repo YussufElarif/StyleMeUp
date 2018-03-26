@@ -26,7 +26,7 @@ class GenderPageState extends State<GenderPage> {
     return new Scaffold(
       body: new Center(
         child: new Text('This is my new text')
-        ),
+      ),
     );
   }
 }
@@ -75,9 +75,9 @@ class NamePageState extends State<NamePage> {
         child: new Row(
           children: <Widget>[
             new Image(
-              image: new AssetImage('http://www.iconninja.com/files/980/282/508/female-blond-avatar-person-girl-user-woman-icon.png'),
-              width: 48.0,
-              height: 48.0,
+              image: new NetworkImage(
+                  'http://www.iconninja.com/files/980/282/508/female-blond-avatar-person-girl-user-woman-icon.png'
+              ),
             )
           ],
         ),

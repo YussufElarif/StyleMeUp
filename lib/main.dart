@@ -20,13 +20,10 @@ class GenderPage extends StatefulWidget {
 }
 
 class GenderPageState extends State<GenderPage> {
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new Center(
-        child: new Text('This is my new text')
-      ),
+      body: new Center(child: new Text('This is my new text')),
     );
   }
 }
@@ -37,8 +34,12 @@ class NamePage extends StatefulWidget {
 }
 
 class NamePageState extends State<NamePage> {
+  final TextEditingController _controller = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size.width / 2;
+
     return new Scaffold(
       // drawer: new Drawer(
       //   child: new ListView(
@@ -72,13 +73,44 @@ class NamePageState extends State<NamePage> {
         elevation: 0.0,
       ),
       body: new Container(
-        child: new Row(
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Image(
-              image: new NetworkImage(
-                  'http://www.iconninja.com/files/980/282/508/female-blond-avatar-person-girl-user-woman-icon.png'
+            new Container(
+              width: size,
+              height: size,
+              decoration: new BoxDecoration(
+                borderRadius:
+                    new BorderRadius.all(new Radius.circular(size / 2)),
+                image: new DecorationImage(
+                  fit: BoxFit.cover,
+                  image: new NetworkImage(
+                      'http://www.iconninja.com/files/980/282/508/female-blond-avatar-person-girl-user-woman-icon.png'),
+                ),
               ),
-            )
+            ),
+            new Column(
+              children: <Widget>[
+                new Text('Username'),
+                new TextField(
+                  controller: _controller,
+                  decoration: new InputDecoration(
+                    hintText: 'Type something',
+                  ),
+                ),
+                new RaisedButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      child: new AlertDialog(
+                        title: new Text('What you typed'),
+                        content: new Text(_controller.text),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
           ],
         ),
       ),
